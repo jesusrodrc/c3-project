@@ -9,5 +9,5 @@ before_install:
         - docker -v && docker-compose -v
 
 install: 
-        - echo "Hello world"
+        - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build
 
