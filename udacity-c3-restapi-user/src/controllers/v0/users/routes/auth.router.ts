@@ -91,11 +91,13 @@ router.post('/', async (req: Request, res: Response) => {
     const email = req.body.email;
     const plainTextPassword = req.body.password;
     // check email is valid
+    console.log("Check email")
     if (!email || !EmailValidator.validate(email)) {
         return res.status(400).send({ auth: false, message: 'Email is required or malformed' });
     }
 
     // check email password valid
+    console.log("Check pwd")
     if (!plainTextPassword) {
         return res.status(400).send({ auth: false, message: 'Password is required' });
     }
@@ -103,7 +105,9 @@ router.post('/', async (req: Request, res: Response) => {
     // find the user
     const user = await User.findByPk(email);
     // check that user doesnt exists
+    console.log("Check user")
     if(user) {
+        console.log("User exists")
         return res.status(422).send({ auth: false, message: 'User may already exist' });
     }
 
